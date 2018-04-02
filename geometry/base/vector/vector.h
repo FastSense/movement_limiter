@@ -1,21 +1,25 @@
 #pragma once
+#include "../point/point.h"
+#include <cmath>
 
 namespace movement_limiter {
 
 class Vector : public Point {
 public:
-  using Point::Point;
+  Vector() = default;
+  Vector(double x, double y):
+      Point(x, y) {}
 
-  double length() const {
-    return std::hypot(x_, y_); 
-  }
+  explicit Vector(const Point& point):
+    Point(point) {}
 
-  void rotate(double angle) const {
-    double new_x = x_ * std::cos(angle) - y_ * std::sin(angle);
-    double new_y = x_ * std::sin(angle) - y_ * std::cos(angle);
-    x_ = new_x;
-    y_ = new_y;
-  }
-}
+  Vector(const Point& a, const Point& b):
+    Point(b - a) {}
+
+  double length() const { return distance_to(Point(0, 0)); }
+
+  void rotate(double angle);
+  void operator=(const Point& point);
+};
   
 }  // namespace movement_limiter

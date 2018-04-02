@@ -1,4 +1,6 @@
 #pragma once
+#include "../constants/constants.h"
+#include <cmath>
 
 namespace movement_limiter {
 
@@ -12,28 +14,16 @@ public:
 
   double x() const { return x_; }
   double y() const { return y_; }
+  double distance_to(const Point& point) const;
 
-  bool operator==(const Vector& rhs) {
-    std::abs(this->x_ - rhs.x_) + std::abs(this->y_ - rhs.y_) < kEpsilon;
-  }
+  bool operator==(const Point& rhs) const;
+  bool operator!=(const Point& rhs) const;
+  Point operator+(const Point& rhs) const;
+  Point operator-(const Point& rhs) const;
 
-  bool operator!=(const Vector& rhs) {
-    std::abs(this->x_ - rhs.x_) + std::abs(this->y_ - rhs.y_) >= kEpsilon;
-  }
-
-  void operator+(const Vector& rhs) {
-    this->x_ += rhs.x_;
-    this->y_ += rhs.y_;
-  }
-
-  void operator-(const Vector& rhs) {
-    this->x_ -= rhs.x_; 
-    this->y_ -= rhs.y_; 
-  }
-  
-private:
+protected:
   double x_;
   double y_;
-}
+};
   
 }  // namespace movement_limiter
