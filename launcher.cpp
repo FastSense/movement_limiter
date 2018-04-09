@@ -5,19 +5,24 @@
 using namespace std;
 using namespace movement_limiter;
 
+void print_nearest_visible_point(const VisiblePointsManager& points_manager) {
+  if (points_manager.has_visible_point()) {
+    std::clog << "nearest visible point: " << points_manager.nearest_visible_point().x() << " "
+        << points_manager.nearest_visible_point().y() << std::endl;
+  }
+}
+
 int main() {
-  VisiblePointsManager point_manager(2 * sqrt(2));
-  point_manager.set_position(Point(0, 0));
-  point_manager.set_sight_direction(Vector(1, 1));
-  point_manager.add_point(Point(-1, -1));
-  point_manager.add_point(Point(2, 2));
-  std::clog << "visible point: " << point_manager.nearest_visible_point().x() << " "
-            << point_manager.nearest_visible_point().y() << std::endl;
-  point_manager.add_point(Point(1, 1));
-  std::clog << "visible point: " << point_manager.nearest_visible_point().x() << " "
-            << point_manager.nearest_visible_point().y() << std::endl;
-  point_manager.add_point(Point(0, 1));
-  std::clog << "visible point: " << point_manager.nearest_visible_point().x() << " "
-            << point_manager.nearest_visible_point().y() << std::endl;
+  VisiblePointsManager points_manager(2 * sqrt(2));
+  points_manager.set_position(Point(0, 0));
+  points_manager.set_sight_direction(Vector(1, 1));
+  points_manager.add_point(Point(-1, -1));
+  print_nearest_visible_point(points_manager);
+  points_manager.add_point(Point(2, 2));
+  print_nearest_visible_point(points_manager);
+  points_manager.add_point(Point(1, 1));
+  print_nearest_visible_point(points_manager);
+  points_manager.add_point(Point(0, 1));
+  print_nearest_visible_point(points_manager);
   return 0;
 }
