@@ -1,5 +1,7 @@
-#pragma once
 #include "vector.h"
+#include "../constants/constants.h"
+#include <cassert>
+#include <cmath>
 
 namespace movement_limiter {
 
@@ -10,9 +12,20 @@ void Vector::rotate(double angle) {
   y_ = new_y;
 }
 
+void Vector::set_length(double new_length) {
+  assert(abs(length()) > kEpsilon);
+  auto old_length = length();
+  x_ *= new_length / old_length;
+  y_ *= new_length / old_length;
+}
+
 void Vector::operator=(const Point& point) {
   x_ = point.x();
   y_ = point.y();
+}
+
+Vector Vector::operator*(double scalar) const {
+  return Vector(x_ * scalar, y_ * scalar);
 }
 
 }  // namespace movement_limiter

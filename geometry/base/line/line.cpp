@@ -48,7 +48,7 @@ int Line::deviation_sign(const Point& point) const {
   }
 }
 
-double Line::rotate(Point rotate_center, double angle) {
+void Line::rotate(Point rotate_center, double angle) {
   Vector vector_to_rotate(rotate_center, anchor_point_);
   vector_to_rotate.rotate(angle);
   anchor_point_ = rotate_center + vector_to_rotate;
@@ -73,6 +73,10 @@ double Line::height_from_ox() const {
   }
   return -anchor_point_.x() * (secondary_point_.y() - anchor_point_.y()) /
       (secondary_point_.x() - anchor_point_.x()) + anchor_point_.y();
+}
+
+bool Line::at_the_same_semiplane(const Point& a, const Point& b) const {
+  return deviation_sign(a) == deviation_sign(b);
 }
 
 }  // namespace movement_limiter

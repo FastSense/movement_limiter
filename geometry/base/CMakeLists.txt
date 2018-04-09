@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.4)
 project(geometry_base)
 
+set(CMAKE_CXX_STANDARD 11)
+
 include_directories(..)
 file(GLOB POINT_SOURCES "point/*.cpp")
 file(GLOB VECTOR_SOURCES "vector/*.cpp")

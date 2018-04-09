@@ -24,7 +24,8 @@ public:
 
   double deviation(const Point& point) const;
   int deviation_sign(const Point& point) const;
-  double rotate(Point rotate_center, double angle);
+  void rotate(Point rotate_center, double angle);
+  bool at_the_same_semiplane(const Point& a, const Point& b) const;
 
 private:
   Point anchor_point_;

@@ -19,7 +19,9 @@ public:
   double length() const { return distance_to(Point(0, 0)); }
 
   void rotate(double angle);
+  void set_length(double length);
   void operator=(const Point& point);
+  Vector operator*(double scalar) const;
 };
   
 }  // namespace movement_limiter

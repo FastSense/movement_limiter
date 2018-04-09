@@ -1,6 +1,7 @@
 #pragma once
 #include "../constants/constants.h"
 #include <cmath>
+#include <fstream>
 
 namespace movement_limiter {
 
@@ -25,5 +26,12 @@ protected:
   double x_;
   double y_;
 };
+
+/*
+std::ostream operator<<(std::ostream& stream, const Point& point) {
+  stream << point.x() << ' ' << point.y();
+  return stream;
+}
+*/
   
 }  // namespace movement_limiter
